@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en-us">
+  <!-- Head -->
+  <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1.9.4/css/academicons.min.css" integrity="sha256-1oz1+rx2BF/9OiBUPSh1NEUwyUECNU5O70RoKnClGNs=" crossorigin="anonymous">
+    <link rel="stylesheet" href="/jekyll-socials/assets/css/style.css">
+    <link defer rel="stylesheet" href="/jekyll-socials/assets/css/jekyll-pygments-themes-native.css" media="">
+    <script>
+      initTheme();
+    </script>
+  </head>
+
+  <!-- Body -->
+  <body>
+    <a href="https://github.com/george-gca/jekyll-socials" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#fff; color:#151513; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <h1 id="jekyll-socials">jekyll-socials</h1>
+
+<p>This is a Jekyll plugin that adds social links to your site. It fetches social information stored in a <code class="language-plaintext highlighter-rouge">_data/socials.yml</code> file in your code. Under the hood, it relies on some awesome font icons to display the social icons:</p>
+
+<ul>
+  <li><a href="https://jpswalsh.github.io/academicons/">Academicons</a></li>
+  <li><a href="https://fontawesome.com/">Font Awesome</a></li>
+  <li><a href="https://github.com/louisfacun/scholar-icons">Scholar Icons</a></li>
+</ul>
+
+<h2 id="installation">Installation</h2>
+
+<ol>
+  <li>Add <code class="language-plaintext highlighter-rouge">gem 'jekyll-socials'</code> to your site’s Gemfile</li>
+  <li>Add the following to your site’s <code class="language-plaintext highlighter-rouge">_config.yml</code>:</li>
+</ol>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">plugins</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">jekyll-socials</span>
+</code></pre></div></div>
+
+<h2 id="usage">Usage</h2>
+
+<div class="social">
+  <div class="contact-icons"><a href="mailto:you@example.com" title="Email"><i class="fa-solid fa-envelope"></i></a> <a href="https://inspirehep.net/authors/1010907" title="Inspirehep id"><i class="ai ai-inspire"></i></a> <a href="/jekyll-socials/feed.xml" title="Rss icon"><i class="fa-solid fa-square-rss"></i></a> <a href="https://scholar.google.com/citations?user=qc6CJjYAAAAJ" title="Scholar userid"><i class="ai ai-google-scholar"></i></a> <a href="https://www.alberteinstein.com/" title="Custom Social"><img src="https://www.alberteinstein.com/wp-content/uploads/2024/03/cropped-favicon-192x192.png" alt="Custom Social" /></a></div>
+</div>
+
+<p>To replicate the social information displayed above and in the bottom of this site, create the file <code class="language-plaintext highlighter-rouge">_data/socials.yml</code> with the following content:</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># this file contains the social media links and usernames</span>
+<span class="c1"># the commented lines are the default social media links supported by the plugin</span>
+<span class="c1"># the socials will be displayed in the order they are defined here</span>
+<span class="c1"># some lines were left uncommented so you can see an example in this site</span>
+
+<span class="c1"># acm_id: # your dl.acm.org/profile/id</span>
+<span class="c1"># blogger_url: # your blogger URL</span>
+<span class="c1"># bluesky_url: # your bluesky URL</span>
+<span class="c1"># dblp_url: # your DBLP profile url</span>
+<span class="c1"># discord_id: # your discord id (18-digit unique numerical identifier)</span>
+<span class="na">email</span><span class="pi">:</span> <span class="s">you@example.com</span> <span class="c1"># your email address</span>
+<span class="c1"># facebook_id: # your facebook id</span>
+<span class="c1"># flickr_id: # your flickr id</span>
+<span class="c1"># github_username: # your GitHub user name</span>
+<span class="c1"># gitlab_username: # your GitLab user name</span>
+<span class="c1"># ieee_id: # your ieeexplore.ieee.org/author/id</span>
+<span class="na">inspirehep_id</span><span class="pi">:</span> <span class="m">1010907</span> <span class="c1"># Inspire HEP author ID</span>
+<span class="c1"># instagram_id: # your instagram id</span>
+<span class="c1"># kaggle_id: # your kaggle id</span>
+<span class="c1"># keybase_username: # your keybase user name</span>
+<span class="c1"># lastfm_id: # your lastfm id</span>
+<span class="c1"># lattes_id: # your ID on Lattes (Brazilian Lattes CV)</span>
+<span class="c1"># leetcode_id: # your LeetCode id</span>
+<span class="c1"># linkedin_username: # your LinkedIn user name</span>
+<span class="c1"># mastodon_username: # your mastodon instance+username in the format instance.tld/@username</span>
+<span class="c1"># medium_username: # your Medium username</span>
+<span class="c1"># orcid_id: # your ORCID ID</span>
+<span class="c1"># osf_id: # your OSF ID</span>
+<span class="c1"># pinterest_id: # your pinterest id</span>
+<span class="c1"># publons_id: # your ID on Publons</span>
+<span class="c1"># quora_username: # your Quora username</span>
+<span class="c1"># research_gate_profile: # your profile on ResearchGate</span>
+<span class="na">rss_icon</span><span class="pi">:</span> <span class="kc">true</span> <span class="c1"># set to true to show the RSS icon</span>
+<span class="na">scholar_userid</span><span class="pi">:</span> <span class="s">qc6CJjYAAAAJ</span> <span class="c1"># your Google Scholar ID</span>
+<span class="c1"># scopus_id: # your profile on Scopus</span>
+<span class="c1"># semanticscholar_id: # your Semantic Scholar ID</span>
+<span class="c1"># spotify_id: # your spotify id</span>
+<span class="c1"># stackoverflow_id: # your stackoverflow id</span>
+<span class="c1"># telegram_username: # your Telegram user name</span>
+<span class="c1"># unsplash_id: # your unsplash id</span>
+<span class="c1"># wechat_username: # your WeChat user name</span>
+<span class="c1"># whatsapp_number: # your WhatsApp number (full phone number in international format. Omit any zeroes, brackets, or dashes when adding the phone number in international format.)</span>
+<span class="c1"># wikidata_id: # your wikidata id</span>
+<span class="c1"># wikipedia_id: # your wikipedia id (Case sensitive)</span>
+<span class="c1"># work_url: # work page URL</span>
+<span class="c1"># x_username: # your X handle</span>
+<span class="c1"># youtube_id: # your youtube channel id (youtube.com/@&lt;youtube_id&gt;)</span>
+<span class="c1"># zotero_username: # your zotero username</span>
+<span class="na">custom_social</span><span class="pi">:</span> <span class="c1"># can be any name here other than the ones already defined above</span>
+  <span class="na">logo</span><span class="pi">:</span> <span class="s">https://www.alberteinstein.com/wp-content/uploads/2024/03/cropped-favicon-192x192.png</span> <span class="c1"># can be png, svg, jpg</span>
+  <span class="na">title</span><span class="pi">:</span> <span class="s">Custom Social</span>
+  <span class="na">url</span><span class="pi">:</span> <span class="s">https://www.alberteinstein.com/</span>
+</code></pre></div></div>
+
+<p>Next, add the following to your layout file:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"social"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"contact-icons"</span><span class="nt">&gt;</span>{% social_links %}<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p>Now, let’s stylize the social icons. To do this, add this to your CSS file:</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">.social</span> <span class="p">{</span>
+  <span class="nl">text-align</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>
+
+  <span class="err">.contact-icons</span> <span class="err">{</span>
+    <span class="nl">font-size</span><span class="p">:</span> <span class="m">4rem</span><span class="p">;</span>
+
+    <span class="err">a</span> <span class="err">{</span>
+      <span class="err">img</span> <span class="err">{</span>
+        <span class="nl">width</span><span class="p">:</span> <span class="m">3.2rem</span><span class="p">;</span>
+        <span class="nl">height</span><span class="p">:</span> <span class="m">3.2rem</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="nt">svg</span> <span class="p">{</span>
+        <span class="nl">width</span><span class="p">:</span> <span class="m">3.5rem</span><span class="p">;</span>
+        <span class="nl">height</span><span class="p">:</span> <span class="m">4rem</span><span class="p">;</span>
+        <span class="nl">margin-bottom</span><span class="p">:</span> <span class="m">0.5rem</span><span class="p">;</span>
+
+        <span class="err">image</span> <span class="err">{</span>
+          <span class="nl">width</span><span class="p">:</span> <span class="m">3.5rem</span><span class="p">;</span>
+          <span class="nl">height</span><span class="p">:</span> <span class="m">3.5rem</span><span class="p">;</span>
+        <span class="p">}</span>
+      <span class="err">}</span>
+
+      <span class="nt">i</span><span class="nd">::before</span> <span class="p">{</span>
+        <span class="nl">color</span><span class="p">:</span> <span class="m">#ddd</span><span class="p">;</span>
+        <span class="nl">transition-property</span><span class="p">:</span> <span class="n">all</span> <span class="m">0.2s</span> <span class="n">ease-in-out</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="o">&amp;</span><span class="nd">:hover</span> <span class="p">{</span>
+        <span class="nl">text-decoration</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
+
+        <span class="py">i</span><span class="p">::</span><span class="n">before</span> <span class="err">{</span>
+          <span class="n">color</span><span class="p">:</span> <span class="no">green</span><span class="p">;</span>
+        <span class="p">}</span>
+      <span class="err">}</span>
+    <span class="err">}</span>
+  <span class="err">}</span>
+<span class="err">}</span>
+</code></pre></div></div>
+
+<p>Also, don’t forget to add the fonts to your site. The easiest way to do this is by adding the fonts CDNs to your layout’s <code class="language-plaintext highlighter-rouge">&lt;head&gt;</code>. Here is an example, considering these CDNs:</p>
+
+<ul>
+  <li><a href="https://www.jsdelivr.com/package/npm/academicons?tab=files&amp;path=css">Academicons</a></li>
+  <li><a href="https://www.jsdelivr.com/package/npm/@fortawesome/fontawesome-free?tab=files&amp;path=css">Font Awesome</a></li>
+  <li><a href="https://www.jsdelivr.com/package/npm/scholar-icons?tab=files&amp;path=css">Scholar Icons</a></li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;head&gt;</span>
+  <span class="nt">&lt;link</span>
+    <span class="na">rel=</span><span class="s">"stylesheet"</span>
+    <span class="na">href=</span><span class="s">"https://cdn.jsdelivr.net/npm/academicons@1.9.2/css/academicons.min.css"</span>
+    <span class="na">integrity=</span><span class="s">"sha256-CylD++oS3IkJmSs/j4i1w0cv2wpVQRLLQqw/m+Fvxts="</span>
+    <span class="na">crossorigin=</span><span class="s">"anonymous"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;link</span>
+    <span class="na">rel=</span><span class="s">"stylesheet"</span>
+    <span class="na">href=</span><span class="s">"https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css"</span>
+    <span class="na">integrity=</span><span class="s">"sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo="</span>
+    <span class="na">crossorigin=</span><span class="s">"anonymous"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;link</span>
+    <span class="na">rel=</span><span class="s">"stylesheet"</span>
+    <span class="na">href=</span><span class="s">"https://cdn.jsdelivr.net/npm/scholar-icons@1.0.3/css/scholar-icons.css"</span>
+    <span class="na">integrity=</span><span class="s">"sha256-VY3hHVj/hNX3fYG6wtbA6TcKJQl7+FthzGSyIB64klY="</span>
+    <span class="na">crossorigin=</span><span class="s">"anonymous"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+</code></pre></div></div>
+
+<h2 id="recommended-usage">Recommended usage</h2>
+
+<p>It is recommended to avoid using the CDN in this case. Instead, download the fonts and add them to your project. This way, you can use some external tools like <a href="https://purgecss.com/">PurgeCSS</a> to remove the unused icons from the fonts, reducing the size of the fonts and improving the performance of your site.</p>
+
+<h3 id="adding-academicons">Adding Academicons</h3>
+
+<p>Download the latest release from the <a href="https://jpswalsh.github.io/academicons/">Academicons website</a>. After downloading, extract the zip file and copy the following files:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>File from Zip</th>
+      <th>Destination</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">fonts/academicons.ttf</code></td>
+      <td><code class="language-plaintext highlighter-rouge">assets/fonts/academicons.ttf</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">fonts/academicons.woff</code></td>
+      <td><code class="language-plaintext highlighter-rouge">assets/fonts/academicons.woff</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">css/academicons.min.css</code></td>
+      <td><code class="language-plaintext highlighter-rouge">assets/css/academicons.min.css</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="adding-font-awesome">Adding Font Awesome</h3>
+
+<p>You need to download the latest release “for the web” from the <a href="https://fontawesome.com/download">Font Awesome website</a>. After downloading, extract the zip file and copy the following directories contents:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>File from Zip</th>
+      <th>Destination</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">scss/</code></td>
+      <td><code class="language-plaintext highlighter-rouge">_sass/font-awesome/</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">webfonts/</code></td>
+      <td><code class="language-plaintext highlighter-rouge">assets/webfonts/</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="adding-scholar-icons">Adding Scholar Icons</h3>
+
+<p>Download the latest release from the <a href="https://louisfacun.github.io/scholar-icons/">Scholar Icons website</a> and extract the zip file. Copy the files:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>File from Zip</th>
+      <th>Destination</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">css/scholar-icons.css</code></td>
+      <td><code class="language-plaintext highlighter-rouge">assets/css/scholar-icons.css</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">fonts/scholar-icons.woff</code></td>
+      <td><code class="language-plaintext highlighter-rouge">assets/fonts/scholar-icons.woff</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">fonts/scholar-icons.ttf</code></td>
+      <td><code class="language-plaintext highlighter-rouge">assets/fonts/scholar-icons.ttf</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="social">
+  <div class="contact-icons"><a href="mailto:you@example.com" title="Email"><i class="fa-solid fa-envelope"></i></a> <a href="https://inspirehep.net/authors/1010907" title="Inspirehep id"><i class="ai ai-inspire"></i></a> <a href="/jekyll-socials/feed.xml" title="Rss icon"><i class="fa-solid fa-square-rss"></i></a> <a href="https://scholar.google.com/citations?user=qc6CJjYAAAAJ" title="Scholar userid"><i class="ai ai-google-scholar"></i></a> <a href="https://www.alberteinstein.com/" title="Custom Social"><img src="https://www.alberteinstein.com/wp-content/uploads/2024/03/cropped-favicon-192x192.png" alt="Custom Social" /></a></div>
+</div>
+
+  </body>
+</html>
