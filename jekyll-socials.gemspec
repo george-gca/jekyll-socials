@@ -5,7 +5,7 @@ require_relative "lib/jekyll-socials/version"
 Gem::Specification.new do |s|
   s.name        = "jekyll-socials"
   s.summary     = "Add beautiful social links to your Jekyll site."
-  s.description = "Add beautiful social links to your Jekyll site."
+  s.description = "Add beautiful social links to your Jekyll site using Academicons, FontAwesome, and Social Icons."
   s.version     = Jekyll::Socials::VERSION
   s.authors     = ["George Corrêa de Araújo"]
   s.homepage    = "https://george-gca.github.io/jekyll-socials/"
