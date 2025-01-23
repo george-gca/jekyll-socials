@@ -43,7 +43,7 @@ module Jekyll
       'strava_userid' => "<i class='fa-brands fa-strava'></i>",
       'telegram_username' => "<i class='fa-brands fa-telegram'></i>",
       'unsplash_id' => "<i class='fa-brands fa-unsplash'></i>",
-      'wechat_qr' => "<i class='fa-brands fa-weixin'></i>",
+      'wechat_username' => "<i class='fa-brands fa-weixin'></i>",
       'whatsapp_number' => "<i class='fa-brands fa-whatsapp'></i>",
       'wikidata_id' => "<i class='fa-solid fa-barcode'></i>",
       'wikipedia_id' => "<i class='fa-brands fa-wikipedia-w'></i>",
@@ -97,7 +97,7 @@ module Jekyll
       'strava_userid' => "https://www.strava.com/athletes/%s",
       'telegram_username' => "https://telegram.me/%s",
       'unsplash_id' => "https://unsplash.com/@%s",
-      'wechat_qr' => "%s",
+      'wechat_username' => "weixin://dl/chat?%s",
       'whatsapp_number' => "https://wa.me/%s",
       'wikidata_id' => "https://www.wikidata.org/wiki/%s",
       'wikipedia_id' => "https://wikipedia.org/wiki/User:%s",
@@ -148,133 +148,3 @@ module Jekyll
 end
 
 Liquid::Template.register_tag('social_links', Jekyll::SocialLinksTag)
-
-# module Jekyll
-#   class SocialLinksTag < Liquid::Tag
-
-#     def initialize(tag_name, text, tokens)
-#       super
-#       @text = text.strip
-#     end
-
-#     def render(context)
-#       # get socials information from _data/socials.yml
-#       socials = context.registers[:site].data['socials'] || []
-#       socials.map do |social|
-#         puts "social: #{social}"
-#         case social[0]
-#         when 'acm_id'
-#           "<a href='https://dl.acm.org/profile/#{social[1]}/' title='ACM DL'><i class='ai ai-acm'></i></a>"
-#         when 'blogger_url'
-#           "<a href='#{social[1]}' title='Blogger'><i class='fa-brands fa-blogger-b'></i></a>"
-#         when 'bluesky_url'
-#           "<a href='#{social[1]}' title='Bluesky'><i class='fa-brands fa-bluesky'></i></a>"
-#         when 'dblp_url'
-#           "<a href='#{social[1]}' title='DBLP'><i class='ai ai-dblp'></i></a>"
-#         when 'discord_id'
-#           "<a href='https://discord.com/users/#{social[1]}' title='Discord'><i class='fa-brands fa-discord'></i></a>"
-#         when 'email'
-#           "<a href='mailto:#{social[1]}' title='email'><i class='fa-solid fa-envelope'></i></a>"
-#         when 'facebook_id'
-#           "<a href='https://facebook.com/#{social[1]}' title='Facebook'><i class='fa-brands fa-facebook'></i></a>"
-#         when 'flickr_id'
-#           "<a href='https://www.flickr.com/#{social[1]}' title='Flickr'><i class='fa-brands fa-flickr'></i></a>"
-#         when 'github_username'
-#           "<a href='https://github.com/#{social[1]}' title='GitHub'><i class='fa-brands fa-github'></i></a>"
-#         when 'gitlab_username'
-#           "<a href='https://gitlab.com/#{social[1]}' title='GitLab'><i class='fa-brands fa-gitlab'></i></a>"
-#         when 'ieee_id'
-#           "<a href='https://ieeexplore.ieee.org/author/#{social[1]}/' title='IEEE Xplore'><i class='ai ai-ieee'></i></a>"
-#         when 'inspirehep_id'
-#           "<a href='https://inspirehep.net/authors/#{social[1]}' title='Inspire HEP'><i class='ai ai-inspire'></i></a>"
-#         when 'instagram_id'
-#           "<a href='https://instagram.com/#{social[1]}' title='Instagram'><i class='fa-brands fa-instagram'></i></a>"
-#         when 'kaggle_id'
-#           "<a href='https://www.kaggle.com/#{social[1]}' title='Kaggle'><i class='fa-brands fa-kaggle'></i></a>"
-#         when 'keybase_username'
-#           "<a href='https://keybase.io/#{social[1]}' title='Keybase'><i class='fa-brands fa-keybase'></i></a>"
-#         when 'lastfm_id'
-#           "<a href='https://www.last.fm/user/#{social[1]}' title='Last FM'><i class='fa-brands fa-lastfm'></i></a>"
-#         when 'lattes_id'
-#           "<a href='http://lattes.cnpq.br/#{social[1]}' target='_blank' title='Lattes'><i class='ai ai-lattes'></i></a>"
-#         when 'leetcode_id'
-#           "<a href='https://leetcode.com/u/#{social[1]}/' target='_blank' title='LeetCode'><i class='si si-leetcode'></i></a>"
-#         when 'linkedin_username'
-#           "<a href='https://www.linkedin.com/in/#{social[1]}' title='LinkedIn'><i class='fa-brands fa-linkedin'></i></a>"
-#         when 'mastodon_username'
-#           "<a rel='me' href='https://#{social[1]}' title='Mastodon'><i class='fa-brands fa-mastodon'></i></a>"
-#         when 'medium_username'
-#           "<a href='https://medium.com/@#{social[1]}' title='Medium'><i class='fa-brands fa-medium'></i></a>"
-#         when 'orcid_id'
-#           "<a href='https://orcid.org/#{social[1]}' title='ORCID'><i class='ai ai-orcid'></i></a>"
-#         when 'osf_id'
-#           "<a href='https://osf.io/#{social[1]}/' title='Open Science Framework'><i class='ai ai-osf'></i></a>"
-#         when 'pinterest_id'
-#           "<a href='https://www.pinterest.com/#{social[1]}' title='Pinterest'><i class='fa-brands fa-pinterest'></i></a>"
-#         when 'publons_id'
-#           "<a href='https://publons.com/a/#{social[1]}/' title='Publons'><i class='ai ai-publons'></i></a>"
-#         when 'quora_username'
-#           "<a href='https://www.quora.com/profile/#{social[1]}' title='Quora'><i class='fa-brands fa-quora'></i></a>"
-#         when 'research_gate_profile'
-#           "<a href='https://www.researchgate.net/profile/#{social[1]}/' title='ResearchGate'><i class='ai ai-researchgate'></i></a>"
-#         when 'rss_icon'
-#           "<a href='#{context.registers[:site].baseurl}/feed.xml' title='RSS Feed'><i class='fa-solid fa-square-rss'></i></a>"
-#         when 'scholar_userid'
-#           "<a href='https://scholar.google.com/citations?user=#{social[1]}' title='Google Scholar'><i class='ai ai-google-scholar'></i></a>"
-#         when 'scopus_id'
-#           "<a href='https://www.scopus.com/authid/detail.uri?authorId=#{social[1]}' title='Scopus'><i class='ai ai-scopus'></i></a>"
-#         when 'semanticscholar_id'
-#           "<a href='https://www.semanticscholar.org/author/#{social[1]}' title='Semantic Scholar'><i class='ai ai-semantic-scholar'></i></a>"
-#         when 'spotify_id'
-#           "<a href='https://open.spotify.com/user/#{social[1]}' title='Spotify'><i class='fa-brands fa-spotify'></i></a>"
-#         when 'stackoverflow_id'
-#           "<a href='https://stackoverflow.com/users/#{social[1]}' title='Stackoverflow'><i class='fa-brands fa-stack-overflow'></i></a>"
-#         when 'strava_userid'
-#           "<a href='https://www.strava.com/athletes/#{social[1]}' title='Strava'><i class='fa-brands fa-strava'></i></a>"
-#         when 'telegram_username'
-#           "<a href='https://telegram.me/#{social[1]}' title='telegram'><i class='fa-brands fa-telegram'></i></a>"
-#         when 'unsplash_id'
-#           "<a href='https://unsplash.com/@#{social[1]}' title='Unsplash'><i class='fa-brands fa-unsplash'></i></a>"
-#         # when 'wechat_qr'
-#         #   "<a id='WeChatBtn' title='WeChat'><i class='fa-brands fa-weixin'></i></a>
-#         #    <div id='WeChatMod' class='wechat-modal'>
-#         #      <img src='#{social[1]}' alt='WeChat QR' id='WeChatQR'>
-#         #    </div>
-#         #    <script defer src='/assets/js/wechat.js' type='text/javascript'></script>"
-#         when 'whatsapp_number'
-#           "<a href='https://wa.me/#{social[1]}' title='whatsapp'><i class='fa-brands fa-whatsapp'></i></a>"
-#         when 'wikidata_id'
-#           "<a href='https://www.wikidata.org/wiki/#{social[1]}' title='Wikidata'><i class='fa-solid fa-barcode'></i></a>"
-#         when 'wikipedia_id'
-#           "<a href='https://wikipedia.org/wiki/User:#{social[1]}' title='Wikipedia'><i class='fa-brands fa-wikipedia-w'></i></a>"
-#         when 'work_url'
-#           "<a href='#{social[1]}' title='Work'><i class='fa-solid fa-briefcase'></i></a>"
-#         when 'x_username'
-#           "<a href='https://twitter.com/#{social[1]}' title='X'><i class='fa-brands fa-x-twitter'></i></a>"
-#         when 'youtube_id'
-#           "<a href='https://youtube.com/@#{social[1]}' title='YouTube'><i class='fa-brands fa-youtube'></i></a>"
-#         when 'zotero_username'
-#           "<a href='https://www.zotero.org/#{social[1]}' title='Zotero'><i class='ai ai-zotero'></i></a>"
-#         else
-#           file_ext = social[1]['logo'].split('.').last
-#           if file_ext == 'svg'
-#             if social[1]['logo'].include?('://')
-#               img_code = "<svg><image xlink:href='#{social[1]['logo']}' /></svg>"
-#             else
-#               img_code = "<svg><image xlink:href='#{social[1]['logo'] | relative_url}' /></svg>"
-#             end
-#           else
-#             if social[1]['logo'].include?('://')
-#               img_code = "<img src='#{social[1]['logo']}' alt='#{social[1]['title']}'>"
-#             else
-#               img_code = "<img src='#{social[1]['logo'] | relative_url}' alt='#{social[1]['title']}'>"
-#             end
-#           end
-#           "<a href='#{social[1]['url']}' title='#{social[1]['title']}'>#{img_code}</a>"
-#         end
-#       end.join(" ")
-#     end
-#   end
-# end
-
-# Liquid::Template.register_tag('social_links', Jekyll::SocialLinksTag)

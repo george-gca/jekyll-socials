@@ -70,7 +70,7 @@ scholar_userid: qc6CJjYAAAAJ # your Google Scholar ID
 # stackoverflow_id: # your stackoverflow id
 # telegram_username: # your Telegram user name
 # unsplash_id: # your unsplash id
-# wechat_qr: # filename of your wechat qr-code saved as an image (e.g., wechat-qr.png if saved to assets/img/wechat-qr.png)
+# wechat_username: # your WeChat user name
 # whatsapp_number: # your WhatsApp number (full phone number in international format. Omit any zeroes, brackets, or dashes when adding the phone number in international format.)
 # wikidata_id: # your wikidata id
 # wikipedia_id: # your wikipedia id (Case sensitive)
