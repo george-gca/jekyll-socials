@@ -23,7 +23,11 @@ plugins:
 
 ## Usage
 
-To replicate the social information displayed in the bottom of this site, create the file `_data/socials.yml` with the following content:
+<div class="social">
+  <div class="contact-icons">{% social_links %}</div>
+</div>
+
+To replicate the social information displayed above and in the bottom of this site, create the file `_data/socials.yml` with the following content:
 
 ```yml
 # this file contains the social media links and usernames
@@ -158,6 +162,39 @@ Also, don't forget to add the fonts to your site. The easiest way to do this is 
     crossorigin="anonymous">
 </head>
 ```
+
+## Recommended usage
+
+It is recommended to avoid using the CDN in this case. Instead, download the fonts and add them to your project. This way, you can use some external tools like [PurgeCSS](https://purgecss.com/) to remove the unused icons from the fonts, reducing the size of the fonts and improving the performance of your site.
+
+### Adding Academicons
+
+Download the latest release from the [Academicons website](https://jpswalsh.github.io/academicons/). After downloading, extract the zip file and copy the following files:
+
+| File from Zip | Destination |
+| --- | --- |
+| `fonts/academicons.ttf` | `assets/fonts/academicons.ttf` |
+| `fonts/academicons.woff` | `assets/fonts/academicons.woff` |
+| `css/academicons.min.css` | `assets/css/academicons.min.css` |
+
+### Adding Font Awesome
+
+You need to download the latest release "for the web" from the [Font Awesome website](https://fontawesome.com/download). After downloading, extract the zip file and copy the following directories contents:
+
+| File from Zip | Destination |
+| --- | --- |
+| `scss/` | `_sass/font-awesome/` |
+| `webfonts/` | `assets/webfonts/` |
+
+### Adding Scholar Icons
+
+Download the latest release from the [Scholar Icons website](https://louisfacun.github.io/scholar-icons/) and extract the zip file. Copy the files:
+
+| File from Zip | Destination |
+| --- | --- |
+| `css/scholar-icons.css` | `assets/css/scholar-icons.css` |
+| `fonts/scholar-icons.woff` | `assets/fonts/scholar-icons.woff` |
+| `fonts/scholar-icons.ttf` | `assets/fonts/scholar-icons.ttf` |
 
 <div class="social">
   <div class="contact-icons">{% social_links %}</div>
