@@ -132,9 +132,10 @@ module Jekyll
           elsif social[0] == 'cv_pdf'
             if social[1] =~ %r{://}
               url = social[1]
-            elsif context.registers[:site].active_lang.nil? || context.registers[:site].active_lang.empty?
+            elsif !context.registers[:site].respond_to?(:active_lang) || !context.registers[:site].active_lang || context.registers[:site].active_lang.empty?
               url = context.registers[:site].baseurl + social[1]
             else
+              # support for jekyll-polyglot
               url = context.registers[:site].baseurl + '/' + context.registers[:site].active_lang + social[1]
             end
           elsif social[0] == 'rss_icon'
