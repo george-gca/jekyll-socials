@@ -48,9 +48,14 @@
 <span class="c1"># the socials will be displayed in the order they are defined here</span>
 <span class="c1"># some lines were left uncommented so you can see an example in this site</span>
 
+<span class="c1"># academia_edu:  your organization and your username Ex. https://organization.academia.edu/UserName</span>
+<span class="c1">#  organization: princeton # your organization as appears in the subdomain</span>
+<span class="c1">#  username:  AlbertEinstein # your username</span>
 <span class="c1"># acm_id: # your dl.acm.org/profile/id</span>
+<span class="c1"># arxiv_id: # your arXiv author ID</span>
 <span class="c1"># blogger_url: # your blogger URL</span>
 <span class="c1"># bluesky_url: # your bluesky URL</span>
+<span class="c1"># cv_pdf: /assets/pdf/example_pdf.pdf # path to your CV PDF file</span>
 <span class="c1"># dblp_url: # your DBLP profile url</span>
 <span class="c1"># discord_id: # your discord id (18-digit unique numerical identifier)</span>
 <span class="na">email</span><span class="pi">:</span> <span class="s">you@example.com</span> <span class="c1"># your email address</span>
@@ -58,6 +63,7 @@
 <span class="c1"># flickr_id: # your flickr id</span>
 <span class="c1"># github_username: # your GitHub user name</span>
 <span class="c1"># gitlab_username: # your GitLab user name</span>
+<span class="c1"># hal_id: # your HAL id (https://hal.science/)</span>
 <span class="c1"># ieee_id: # your ieeexplore.ieee.org/author/id</span>
 <span class="na">inspirehep_id</span><span class="pi">:</span> <span class="m">1010907</span> <span class="c1"># Inspire HEP author ID</span>
 <span class="c1"># instagram_id: # your instagram id</span>
@@ -81,6 +87,7 @@
 <span class="c1"># semanticscholar_id: # your Semantic Scholar ID</span>
 <span class="c1"># spotify_id: # your spotify id</span>
 <span class="c1"># stackoverflow_id: # your stackoverflow id</span>
+<span class="c1"># strava_userid: # your strava user id</span>
 <span class="c1"># telegram_username: # your Telegram user name</span>
 <span class="c1"># unsplash_id: # your unsplash id</span>
 <span class="c1"># wechat_username: # your WeChat user name</span>
@@ -130,15 +137,15 @@
       <span class="err">}</span>
 
       <span class="nt">i</span><span class="nd">::before</span> <span class="p">{</span>
-        <span class="nl">color</span><span class="p">:</span> <span class="m">#ddd</span><span class="p">;</span>
-        <span class="nl">transition-property</span><span class="p">:</span> <span class="n">all</span> <span class="m">0.2s</span> <span class="n">ease-in-out</span><span class="p">;</span>
+        <span class="nl">color</span><span class="p">:</span> <span class="nx">#ddd</span><span class="p">;</span>
+        <span class="nl">transition-property</span><span class="p">:</span> <span class="nb">all</span> <span class="m">0.2s</span> <span class="nb">ease-in-out</span><span class="p">;</span>
       <span class="p">}</span>
 
       <span class="o">&amp;</span><span class="nd">:hover</span> <span class="p">{</span>
         <span class="nl">text-decoration</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
 
         <span class="py">i</span><span class="p">::</span><span class="n">before</span> <span class="err">{</span>
-          <span class="n">color</span><span class="p">:</span> <span class="no">green</span><span class="p">;</span>
+          <span class="nb">color</span><span class="p">:</span> <span class="nx">green</span><span class="p">;</span>
         <span class="p">}</span>
       <span class="err">}</span>
     <span class="err">}</span>
@@ -159,17 +166,20 @@
     <span class="na">rel=</span><span class="s">"stylesheet"</span>
     <span class="na">href=</span><span class="s">"https://cdn.jsdelivr.net/npm/academicons@1.9.2/css/academicons.min.css"</span>
     <span class="na">integrity=</span><span class="s">"sha256-CylD++oS3IkJmSs/j4i1w0cv2wpVQRLLQqw/m+Fvxts="</span>
-    <span class="na">crossorigin=</span><span class="s">"anonymous"</span><span class="nt">&gt;</span>
+    <span class="na">crossorigin=</span><span class="s">"anonymous"</span>
+  <span class="nt">/&gt;</span>
   <span class="nt">&lt;link</span>
     <span class="na">rel=</span><span class="s">"stylesheet"</span>
     <span class="na">href=</span><span class="s">"https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css"</span>
     <span class="na">integrity=</span><span class="s">"sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo="</span>
-    <span class="na">crossorigin=</span><span class="s">"anonymous"</span><span class="nt">&gt;</span>
+    <span class="na">crossorigin=</span><span class="s">"anonymous"</span>
+  <span class="nt">/&gt;</span>
   <span class="nt">&lt;link</span>
     <span class="na">rel=</span><span class="s">"stylesheet"</span>
     <span class="na">href=</span><span class="s">"https://cdn.jsdelivr.net/npm/scholar-icons@1.0.3/css/scholar-icons.css"</span>
     <span class="na">integrity=</span><span class="s">"sha256-VY3hHVj/hNX3fYG6wtbA6TcKJQl7+FthzGSyIB64klY="</span>
-    <span class="na">crossorigin=</span><span class="s">"anonymous"</span><span class="nt">&gt;</span>
+    <span class="na">crossorigin=</span><span class="s">"anonymous"</span>
+  <span class="nt">/&gt;</span>
 <span class="nt">&lt;/head&gt;</span>
 </code></pre></div></div>
 
