@@ -268,5 +268,14 @@
   <div class="contact-icons"><a href="mailto:you@example.com" title="Email"><i class="fa-solid fa-envelope"></i></a> <a href="https://inspirehep.net/authors/1010907" title="Inspirehep id"><i class="ai ai-inspire"></i></a> <a href="/jekyll-socials/feed.xml" title="Rss icon"><i class="fa-solid fa-square-rss"></i></a> <a href="https://scholar.google.com/citations?user=qc6CJjYAAAAJ" title="Scholar userid"><i class="ai ai-google-scholar"></i></a> <a href="https://www.alberteinstein.com/" title="Custom Social"><img src="https://www.alberteinstein.com/wp-content/uploads/2024/03/cropped-favicon-192x192.png" alt="Custom Social" /></a></div>
 </div>
 
+<h2 id="using-with-jekyll-polyglot">Using with Jekyll Polyglot</h2>
+
+<p>To be able to use this plugin with <a href="https://github.com/untra/polyglot">Jekyll Polyglot</a>, like if you want to add localized cv pdfs, you can modify the <code class="language-plaintext highlighter-rouge">_data/socials.yml</code> file as follows:</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">cv_pdf</span><span class="pi">:</span> <span class="s">/assets/pdf/[LANG]/example_pdf.pdf</span>
+</code></pre></div></div>
+
+<p>Where <code class="language-plaintext highlighter-rouge">[LANG]</code> will be replaced by the current language code when rendering the site.</p>
+
   </body>
 </html>
