@@ -4,8 +4,12 @@ module Jekyll
   class SocialLinksTag < Liquid::Tag
     # https://jpswalsh.github.io/academicons/
     ACADEMICONS = {
+      'academia_edu' => "<i class='ai ai-academia'></i>",
       'acm_id' => "<i class='ai ai-acm'></i>",
+      'arxiv_id' => "<i class='ai ai-arxiv'></i>",
+      'cv_pdf' => "<i class='ai ai-cv'></i>",
       'dblp_url' => "<i class='ai ai-dblp'></i>",
+      'hal_id' => "<i class='ai ai-hal'></i>",
       'ieee_id' => "<i class='ai ai-ieee'></i>",
       'inspirehep_id' => "<i class='ai ai-inspire'></i>",
       'lattes_id' => "<i class='ai ai-lattes'></i>",
@@ -61,9 +65,12 @@ module Jekyll
     SOCIAL_ICONS = ACADEMICONS.merge(FONT_AWESOME).merge(SCHOLAR_ICONS)
 
     SOCIAL_URLS = {
+      'academia_edu' => "https://%s.academia.edu/%s",
       'acm_id' => "https://dl.acm.org/profile/%s/",
+      'arxiv_id' => "https://arxiv.org/a/%s.html",
       'blogger_url' => "%s",
       'bluesky_url' => "%s",
+      'cv_pdf' => "%s",
       'dblp_url' => "%s",
       'discord_id' => "https://discord.com/users/%s",
       'email' => "mailto:%s",
@@ -71,6 +78,7 @@ module Jekyll
       'flickr_id' => "https://www.flickr.com/%s",
       'github_username' => "https://github.com/%s",
       'gitlab_username' => "https://gitlab.com/%s",
+      'hal_id' => "https://cv.hal.science/%s",
       'ieee_id' => "https://ieeexplore.ieee.org/author/%s/",
       'inspirehep_id' => "https://inspirehep.net/authors/%s",
       'instagram_id' => "https://instagram.com/%s",
@@ -119,7 +127,17 @@ module Jekyll
         icon = SOCIAL_ICONS[social[0]]
         url_template = SOCIAL_URLS[social[0]]
         if icon && url_template
-          if social[0] == 'rss_icon'
+          if social[0] == 'academia_edu'
+            url = url_template % [social[1]['organization'], social[1]['username']]
+          elsif social[0] == 'cv_pdf'
+            if social[1] =~ %r{://}
+              url = social[1]
+            elsif context.registers[:site].active_lang.nil? || context.registers[:site].active_lang.empty?
+              url = context.registers[:site].baseurl + social[1]
+            else
+              url = context.registers[:site].baseurl + '/' + context.registers[:site].active_lang + social[1]
+            end
+          elsif social[0] == 'rss_icon'
             url = url_template % context.registers[:site].baseurl + '/feed.xml'
           else
             url = url_template % social[1]

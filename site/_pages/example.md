@@ -35,9 +35,14 @@ To replicate the social information displayed above and in the bottom of this si
 # the socials will be displayed in the order they are defined here
 # some lines were left uncommented so you can see an example in this site
 
+# academia_edu:  your organization and your username Ex. https://organization.academia.edu/UserName
+#  organization: princeton # your organization as appears in the subdomain
+#  username:  AlbertEinstein # your username
 # acm_id: # your dl.acm.org/profile/id
+# arxiv_id: # your arXiv author ID
 # blogger_url: # your blogger URL
 # bluesky_url: # your bluesky URL
+# cv_pdf: /assets/pdf/example_pdf.pdf # path to your CV PDF file
 # dblp_url: # your DBLP profile url
 # discord_id: # your discord id (18-digit unique numerical identifier)
 email: you@example.com # your email address
@@ -45,6 +50,7 @@ email: you@example.com # your email address
 # flickr_id: # your flickr id
 # github_username: # your GitHub user name
 # gitlab_username: # your GitLab user name
+# hal_id: # your HAL id (https://hal.science/)
 # ieee_id: # your ieeexplore.ieee.org/author/id
 inspirehep_id: 1010907 # Inspire HEP author ID
 # instagram_id: # your instagram id
@@ -68,6 +74,7 @@ scholar_userid: qc6CJjYAAAAJ # your Google Scholar ID
 # semanticscholar_id: # your Semantic Scholar ID
 # spotify_id: # your spotify id
 # stackoverflow_id: # your stackoverflow id
+# strava_userid: # your strava user id
 # telegram_username: # your Telegram user name
 # unsplash_id: # your unsplash id
 # wechat_username: # your WeChat user name
@@ -87,11 +94,13 @@ custom_social: # can be any name here other than the ones already defined above
 Next, add the following to your layout file:
 
 {% raw %}
+
 ```html
 <div class="social">
   <div class="contact-icons">{% social_links %}</div>
 </div>
 ```
+
 {% endraw %}
 
 Now, let's stylize the social icons. To do this, add this to your CSS file:
@@ -149,17 +158,20 @@ Also, don't forget to add the fonts to your site. The easiest way to do this is 
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/academicons@1.9.2/css/academicons.min.css"
     integrity="sha256-CylD++oS3IkJmSs/j4i1w0cv2wpVQRLLQqw/m+Fvxts="
-    crossorigin="anonymous">
+    crossorigin="anonymous"
+  />
   <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css"
     integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo="
-    crossorigin="anonymous">
+    crossorigin="anonymous"
+  />
   <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/scholar-icons@1.0.3/css/scholar-icons.css"
     integrity="sha256-VY3hHVj/hNX3fYG6wtbA6TcKJQl7+FthzGSyIB64klY="
-    crossorigin="anonymous">
+    crossorigin="anonymous"
+  />
 </head>
 ```
 
@@ -171,30 +183,30 @@ It is recommended to avoid using the CDN in this case. Instead, download the fon
 
 Download the latest release from the [Academicons website](https://jpswalsh.github.io/academicons/). After downloading, extract the zip file and copy the following files:
 
-| File from Zip | Destination |
-| --- | --- |
-| `fonts/academicons.ttf` | `assets/fonts/academicons.ttf` |
-| `fonts/academicons.woff` | `assets/fonts/academicons.woff` |
+| File from Zip             | Destination                      |
+| ------------------------- | -------------------------------- |
+| `fonts/academicons.ttf`   | `assets/fonts/academicons.ttf`   |
+| `fonts/academicons.woff`  | `assets/fonts/academicons.woff`  |
 | `css/academicons.min.css` | `assets/css/academicons.min.css` |
 
 ### Adding Font Awesome
 
 You need to download the latest release "for the web" from the [Font Awesome website](https://fontawesome.com/download). After downloading, extract the zip file and copy the following directories contents:
 
-| File from Zip | Destination |
-| --- | --- |
-| `scss/` | `_sass/font-awesome/` |
-| `webfonts/` | `assets/webfonts/` |
+| File from Zip | Destination           |
+| ------------- | --------------------- |
+| `scss/`       | `_sass/font-awesome/` |
+| `webfonts/`   | `assets/webfonts/`    |
 
 ### Adding Scholar Icons
 
 Download the latest release from the [Scholar Icons website](https://louisfacun.github.io/scholar-icons/) and extract the zip file. Copy the files:
 
-| File from Zip | Destination |
-| --- | --- |
-| `css/scholar-icons.css` | `assets/css/scholar-icons.css` |
+| File from Zip              | Destination                       |
+| -------------------------- | --------------------------------- |
+| `css/scholar-icons.css`    | `assets/css/scholar-icons.css`    |
 | `fonts/scholar-icons.woff` | `assets/fonts/scholar-icons.woff` |
-| `fonts/scholar-icons.ttf` | `assets/fonts/scholar-icons.ttf` |
+| `fonts/scholar-icons.ttf`  | `assets/fonts/scholar-icons.ttf`  |
 
 <div class="social">
   <div class="contact-icons">{% social_links %}</div>
