@@ -211,3 +211,13 @@ Download the latest release from the [Scholar Icons website](https://louisfacun.
 <div class="social">
   <div class="contact-icons">{% social_links %}</div>
 </div>
+
+## Using with Jekyll Polyglot
+
+To be able to use this plugin with [Jekyll Polyglot](https://github.com/untra/polyglot), like if you want to add localized cv pdfs, you can modify the `_data/socials.yml` file as follows:
+
+```yml
+cv_pdf: /assets/pdf/[LANG]/example_pdf.pdf
+```
+
+Where `[LANG]` will be replaced by the current language code when rendering the site.

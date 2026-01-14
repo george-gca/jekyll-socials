@@ -136,7 +136,7 @@ module Jekyll
               url = context.registers[:site].baseurl + social[1]
             else
               # support for jekyll-polyglot
-              url = context.registers[:site].baseurl + '/' + context.registers[:site].active_lang + social[1]
+              url = context.registers[:site].baseurl + social[1].gsub('[LANG]', context.registers[:site].active_lang)
             end
           elsif social[0] == 'rss_icon'
             url = url_template % context.registers[:site].baseurl + '/feed.xml'
