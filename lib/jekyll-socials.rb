@@ -133,13 +133,16 @@ module Jekyll
             if social[1] =~ %r{://}
               url = social[1]
             elsif !context.registers[:site].respond_to?(:active_lang) || !context.registers[:site].active_lang || context.registers[:site].active_lang.empty?
-              url = context.registers[:site].baseurl + social[1]
+              baseurl = context.registers[:site].baseurl.to_s.empty? ? '' : context.registers[:site].baseurl
+              url = baseurl + social[1]
             else
               # support for jekyll-polyglot
-              url = context.registers[:site].baseurl + social[1].gsub('[LANG]', context.registers[:site].active_lang)
+              baseurl = context.registers[:site].baseurl.to_s.empty? ? '' : context.registers[:site].baseurl
+              url = baseurl + social[1].gsub('[LANG]', context.registers[:site].active_lang)
             end
           elsif social[0] == 'rss_icon'
-            url = url_template % context.registers[:site].baseurl + '/feed.xml'
+            baseurl = context.registers[:site].baseurl.to_s.empty? ? '' : context.registers[:site].baseurl
+            url = url_template % (baseurl + '/feed.xml')
           else
             url = url_template % social[1]
           end
