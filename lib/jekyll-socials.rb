@@ -129,36 +129,89 @@ module Jekyll
         icon = SOCIAL_ICONS[social[0]]
         url_template = SOCIAL_URLS[social[0]]
         if icon && url_template
-          if social[0] == 'academia_edu'
-            url = url_template % [social[1]['organization'], social[1]['username']]
-          elsif social[0] == 'cv_pdf'
-            if social[1] =~ %r{://}
-              url = social[1]
-            elsif !context.registers[:site].respond_to?(:active_lang) || !context.registers[:site].active_lang || context.registers[:site].active_lang.empty?
+          # Check if user provided custom logo override
+          if social[1].is_a?(Hash) && social[1]['logo']
+            # Use custom logo for this built-in social
+            logo_value = social[1]['logo']
+            file_ext = logo_value.split('.').last.downcase
+            image_extensions = ['png', 'jpg', 'jpeg', 'gif', 'webp', 'svg']
+
+            # Build URL - extract value from hash (support 'value' key or social-specific keys)
+            if social[0] == 'academia_edu'
+              url = url_template % [social[1]['organization'], social[1]['username']]
+            elsif social[0] == 'cv_pdf'
+              social_value = social[1]['value'] || social[1][social[0]]
+              if social_value =~ %r{://}
+                url = social_value
+              elsif !context.registers[:site].respond_to?(:active_lang) || !context.registers[:site].active_lang || context.registers[:site].active_lang.empty?
+                baseurl = context.registers[:site].baseurl.to_s.empty? ? '' : context.registers[:site].baseurl
+                url = baseurl + social_value
+              else
+                # support for jekyll-polyglot
+                baseurl = context.registers[:site].baseurl.to_s.empty? ? '' : context.registers[:site].baseurl
+                url = baseurl + social_value.gsub('[LANG]', context.registers[:site].active_lang)
+              end
+            elsif social[0] == 'rss_icon'
               baseurl = context.registers[:site].baseurl.to_s.empty? ? '' : context.registers[:site].baseurl
-              url = baseurl + social[1]
+              url = url_template % (baseurl + '/feed.xml')
             else
-              # support for jekyll-polyglot
-              baseurl = context.registers[:site].baseurl.to_s.empty? ? '' : context.registers[:site].baseurl
-              url = baseurl + social[1].gsub('[LANG]', context.registers[:site].active_lang)
+              social_value = social[1]['value'] || social[1][social[0]]
+              url = url_template % social_value
             end
-          elsif social[0] == 'rss_icon'
-            baseurl = context.registers[:site].baseurl.to_s.empty? ? '' : context.registers[:site].baseurl
-            url = url_template % (baseurl + '/feed.xml')
+
+            # Render with custom logo
+            if image_extensions.include?(file_ext)
+              # It's a file path or URL, render as image
+              if file_ext == 'svg'
+                if logo_value.include?('://')
+                  img_code = "<svg><image xlink:href='#{logo_value}' /></svg>"
+                else
+                  img_code = "<svg><image xlink:href='#{logo_value | relative_url}' /></svg>"
+                end
+              else
+                if logo_value.include?('://')
+                  img_code = "<img src='#{logo_value}' alt='#{social[0].gsub('_', ' ').capitalize}'>"
+                else
+                  img_code = "<img src='#{logo_value | relative_url}' alt='#{social[0].gsub('_', ' ').capitalize}'>"
+                end
+              end
+              "<a href='#{url}' title='#{social[0].gsub('_', ' ').capitalize}'>#{img_code}</a>"
+            else
+              # It's an icon class string, render as icon (from any font source)
+              icon_html = "<i class='#{logo_value}'></i>"
+              "<a href='#{url}' title='#{social[0].gsub('_', ' ').capitalize}'>#{icon_html}</a>"
+            end
           else
-            url = url_template % social[1]
+            # Use default icon for built-in social
+            if social[0] == 'academia_edu'
+              url = url_template % [social[1]['organization'], social[1]['username']]
+            elsif social[0] == 'cv_pdf'
+              if social[1] =~ %r{://}
+                url = social[1]
+              elsif !context.registers[:site].respond_to?(:active_lang) || !context.registers[:site].active_lang || context.registers[:site].active_lang.empty?
+                baseurl = context.registers[:site].baseurl.to_s.empty? ? '' : context.registers[:site].baseurl
+                url = baseurl + social[1]
+              else
+                # support for jekyll-polyglot
+                baseurl = context.registers[:site].baseurl.to_s.empty? ? '' : context.registers[:site].baseurl
+                url = baseurl + social[1].gsub('[LANG]', context.registers[:site].active_lang)
+              end
+            elsif social[0] == 'rss_icon'
+              baseurl = context.registers[:site].baseurl.to_s.empty? ? '' : context.registers[:site].baseurl
+              url = url_template % (baseurl + '/feed.xml')
+            else
+              url = url_template % social[1]
+            end
+            "<a href='#{url}' title='#{social[0].gsub('_', ' ').capitalize}'>#{icon}</a>"
           end
-          "<a href='#{url}' title='#{social[0].gsub('_', ' ').capitalize}'>#{icon}</a>"
         else
-          # Check if logo is an icon class (Font Awesome, Academicons, or Scholar Icons)
+          # Check if logo is an icon class or an image
           logo_value = social[1]['logo']
-          if logo_value.include?('fa-') || logo_value.include?('ai-') || logo_value.include?('si-')
-            # It's an icon class string, render as icon
-            icon_html = "<i class='#{logo_value}'></i>"
-            "<a href='#{social[1]['url']}' title='#{social[1]['title']}'>#{icon_html}</a>"
-          else
+          file_ext = logo_value.split('.').last.downcase
+          image_extensions = ['png', 'jpg', 'jpeg', 'gif', 'webp', 'svg']
+
+          if image_extensions.include?(file_ext)
             # It's a file path or URL, render as image
-            file_ext = logo_value.split('.').last
             if file_ext == 'svg'
               if logo_value.include?('://')
                 img_code = "<svg><image xlink:href='#{logo_value}' /></svg>"
@@ -173,6 +226,10 @@ module Jekyll
               end
             end
             "<a href='#{social[1]['url']}' title='#{social[1]['title']}'>#{img_code}</a>"
+          else
+            # It's an icon class string, render as icon (from any font source)
+            icon_html = "<i class='#{logo_value}'></i>"
+            "<a href='#{social[1]['url']}' title='#{social[1]['title']}'>#{icon_html}</a>"
           end
         end
       end.join(" ")
