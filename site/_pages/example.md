@@ -59,6 +59,7 @@ inspirehep_id: 1010907 # Inspire HEP author ID
 # lastfm_id: # your lastfm id
 # lattes_id: # your ID on Lattes (Brazilian Lattes CV)
 # leetcode_id: # your LeetCode id
+# letterboxd_id: # your Letterboxd id
 # linkedin_username: # your LinkedIn user name
 # mastodon_username: # your mastodon instance+username in the format instance.tld/@username
 # medium_username: # your Medium username
@@ -86,7 +87,11 @@ scholar_userid: qc6CJjYAAAAJ # your Google Scholar ID
 # youtube_id: # your youtube channel id (youtube.com/@<youtube_id>)
 # zotero_username: # your zotero username
 custom_social: # can be any name here other than the ones already defined above
-  logo: https://www.alberteinstein.com/wp-content/uploads/2024/03/cropped-favicon-192x192.png # can be png, svg, jpg
+  # logo can be a link to an image (png, jpg, svg)
+  # or an Academicons class like "ai ai-acm"
+  # or a FontAwesome class like "fa-brands fa-square-letterboxd"
+  # or a Scholar Icons class like "si si-leetcode"
+  logo: https://www.alberteinstein.com/wp-content/uploads/2024/03/cropped-favicon-192x192.png
   title: Custom Social
   url: https://www.alberteinstein.com/
 ```

@@ -36,6 +36,7 @@ module Jekyll
       'kaggle_id' => "<i class='fa-brands fa-kaggle'></i>",
       'keybase_username' => "<i class='fa-brands fa-keybase'></i>",
       'lastfm_id' => "<i class='fa-brands fa-lastfm'></i>",
+      'letterboxd_id' => "<i class='fa-brands fa-square-letterboxd'></i>",
       'linkedin_username' => "<i class='fa-brands fa-linkedin'></i>",
       'mastodon_username' => "<i class='fa-brands fa-mastodon'></i>",
       'medium_username' => "<i class='fa-brands fa-medium'></i>",
@@ -87,6 +88,7 @@ module Jekyll
       'lastfm_id' => "https://www.last.fm/user/%s",
       'lattes_id' => "http://lattes.cnpq.br/%s",
       'leetcode_id' => "https://leetcode.com/u/%s/",
+      'letterboxd_id' => "https://letterboxd.com/%s",
       'linkedin_username' => "https://www.linkedin.com/in/%s",
       'mastodon_username' => "https://%s",
       'medium_username' => "https://medium.com/@%s",
@@ -148,21 +150,30 @@ module Jekyll
           end
           "<a href='#{url}' title='#{social[0].gsub('_', ' ').capitalize}'>#{icon}</a>"
         else
-          file_ext = social[1]['logo'].split('.').last
-          if file_ext == 'svg'
-            if social[1]['logo'].include?('://')
-              img_code = "<svg><image xlink:href='#{social[1]['logo']}' /></svg>"
-            else
-              img_code = "<svg><image xlink:href='#{social[1]['logo'] | relative_url}' /></svg>"
-            end
+          # Check if logo is an icon class (Font Awesome, Academicons, or Scholar Icons)
+          logo_value = social[1]['logo']
+          if logo_value.include?('fa-') || logo_value.include?('ai-') || logo_value.include?('si-')
+            # It's an icon class string, render as icon
+            icon_html = "<i class='#{logo_value}'></i>"
+            "<a href='#{social[1]['url']}' title='#{social[1]['title']}'>#{icon_html}</a>"
           else
-            if social[1]['logo'].include?('://')
-              img_code = "<img src='#{social[1]['logo']}' alt='#{social[1]['title']}'>"
+            # It's a file path or URL, render as image
+            file_ext = logo_value.split('.').last
+            if file_ext == 'svg'
+              if logo_value.include?('://')
+                img_code = "<svg><image xlink:href='#{logo_value}' /></svg>"
+              else
+                img_code = "<svg><image xlink:href='#{logo_value | relative_url}' /></svg>"
+              end
             else
-              img_code = "<img src='#{social[1]['logo'] | relative_url}' alt='#{social[1]['title']}'>"
+              if logo_value.include?('://')
+                img_code = "<img src='#{logo_value}' alt='#{social[1]['title']}'>"
+              else
+                img_code = "<img src='#{logo_value | relative_url}' alt='#{social[1]['title']}'>"
+              end
             end
+            "<a href='#{social[1]['url']}' title='#{social[1]['title']}'>#{img_code}</a>"
           end
-          "<a href='#{social[1]['url']}' title='#{social[1]['title']}'>#{img_code}</a>"
         end
       end.join(" ")
     end
