@@ -38,7 +38,7 @@
 <h2 id="usage">Usage</h2>
 
 <div class="social">
-  <div class="contact-icons"><a href="mailto:you@example.com" title="Email"><i class="fa-solid fa-envelope"></i></a> <a href="https://inspirehep.net/authors/1010907" title="Inspirehep id"><i class="ai ai-inspire"></i></a> <a href="/jekyll-socials/feed.xml" title="Rss icon"><i class="fa-solid fa-square-rss"></i></a> <a href="https://scholar.google.com/citations?user=qc6CJjYAAAAJ" title="Scholar userid"><i class="ai ai-google-scholar"></i></a> <a href="https://www.alberteinstein.com/" title="Custom Social"><img src="https://www.alberteinstein.com/wp-content/uploads/2024/03/cropped-favicon-192x192.png" alt="Custom Social" /></a></div>
+  <div class="contact-icons"><a href="mailto:you@example.com" title="Email"><i class="fa-solid fa-envelope"></i></a> <a href="https://inspirehep.net/authors/1010907" title="Inspirehep id"><i class="ai ai-inspire"></i></a> <a href="https://letterboxd.com/alberteinstein" title="Letterboxd id"><i class="fa-brands fa-letterboxd"></i></a> <a href="/jekyll-socials/feed.xml" title="Rss icon"><i class="fa-solid fa-square-rss"></i></a> <a href="https://scholar.google.com/citations?user=qc6CJjYAAAAJ" title="Scholar userid"><i class="ai ai-google-scholar"></i></a> <a href="https://www.alberteinstein.com/" title="Custom Social"><img src="https://www.alberteinstein.com/wp-content/uploads/2024/03/cropped-favicon-192x192.png" alt="Custom Social" /></a></div>
 </div>
 
 <p>To replicate the social information displayed above and in the bottom of this site, create the file <code class="language-plaintext highlighter-rouge">_data/socials.yml</code> with the following content:</p>
@@ -72,6 +72,9 @@
 <span class="c1"># lastfm_id: # your lastfm id</span>
 <span class="c1"># lattes_id: # your ID on Lattes (Brazilian Lattes CV)</span>
 <span class="c1"># leetcode_id: # your LeetCode id</span>
+<span class="na">letterboxd_id</span><span class="pi">:</span>
+  <span class="na">value</span><span class="pi">:</span> <span class="s">alberteinstein</span> <span class="c1"># your Letterboxd id</span>
+  <span class="na">logo</span><span class="pi">:</span> <span class="s">fa-brands fa-letterboxd</span> <span class="c1"># override with custom icon class</span>
 <span class="c1"># linkedin_username: # your LinkedIn user name</span>
 <span class="c1"># mastodon_username: # your mastodon instance+username in the format instance.tld/@username</span>
 <span class="c1"># medium_username: # your Medium username</span>
@@ -99,9 +102,35 @@
 <span class="c1"># youtube_id: # your youtube channel id (youtube.com/@&lt;youtube_id&gt;)</span>
 <span class="c1"># zotero_username: # your zotero username</span>
 <span class="na">custom_social</span><span class="pi">:</span> <span class="c1"># can be any name here other than the ones already defined above</span>
-  <span class="na">logo</span><span class="pi">:</span> <span class="s">https://www.alberteinstein.com/wp-content/uploads/2024/03/cropped-favicon-192x192.png</span> <span class="c1"># can be png, svg, jpg</span>
+  <span class="c1"># logo can be a link to an image (png, jpg, svg)</span>
+  <span class="c1"># or an Academicons class like "ai ai-acm"</span>
+  <span class="c1"># or a FontAwesome class like "fa-brands fa-square-letterboxd"</span>
+  <span class="c1"># or a Scholar Icons class like "si si-leetcode"</span>
+  <span class="c1"># or any other icon class from fonts you've added to your site</span>
+  <span class="na">logo</span><span class="pi">:</span> <span class="s">https://www.alberteinstein.com/wp-content/uploads/2024/03/cropped-favicon-192x192.png</span>
   <span class="na">title</span><span class="pi">:</span> <span class="s">Custom Social</span>
   <span class="na">url</span><span class="pi">:</span> <span class="s">https://www.alberteinstein.com/</span>
+</code></pre></div></div>
+
+<h3 id="overriding-icons-for-built-in-socials">Overriding Icons for Built-in Socials</h3>
+
+<p>You can override the default icons for any of the built-in social platforms. This is useful if you want to use a different icon from a different font library. For example, to use a different Letterboxd icon:</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">letterboxd_id</span><span class="pi">:</span>
+  <span class="na">value</span><span class="pi">:</span> <span class="s">your_letterboxd_username</span> <span class="c1"># the actual username or ID value</span>
+  <span class="na">logo</span><span class="pi">:</span> <span class="s">fa-brands fa-letterboxd</span> <span class="c1"># override with custom icon class</span>
+</code></pre></div></div>
+
+<p>This allows you to customize the appearance of any built-in social while keeping all the URL handling logic intact.</p>
+
+<h3 id="using-icons-from-other-font-sources">Using Icons from Other Font Sources</h3>
+
+<p>While this plugin comes with built-in support for Academicons, Font Awesome, and Scholar Icons, you can use icons from any other font library you add to your site. Simply provide the icon class name in the <code class="language-plaintext highlighter-rouge">logo</code> field of a custom social or when overriding a built-in social’s icon. The plugin will automatically detect whether the value is a file path (by checking for file extensions like .png, .jpg, .svg) or an icon class.</p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">custom_social</span><span class="pi">:</span>
+  <span class="na">logo</span><span class="pi">:</span> <span class="s">custom-font-icon-class</span> <span class="c1"># Any icon class from fonts you've added</span>
+  <span class="na">title</span><span class="pi">:</span> <span class="s">My Custom Social</span>
+  <span class="na">url</span><span class="pi">:</span> <span class="s">https://example.com</span>
 </code></pre></div></div>
 
 <p>Next, add the following to your layout file:</p>
@@ -265,7 +294,7 @@
 </table>
 
 <div class="social">
-  <div class="contact-icons"><a href="mailto:you@example.com" title="Email"><i class="fa-solid fa-envelope"></i></a> <a href="https://inspirehep.net/authors/1010907" title="Inspirehep id"><i class="ai ai-inspire"></i></a> <a href="/jekyll-socials/feed.xml" title="Rss icon"><i class="fa-solid fa-square-rss"></i></a> <a href="https://scholar.google.com/citations?user=qc6CJjYAAAAJ" title="Scholar userid"><i class="ai ai-google-scholar"></i></a> <a href="https://www.alberteinstein.com/" title="Custom Social"><img src="https://www.alberteinstein.com/wp-content/uploads/2024/03/cropped-favicon-192x192.png" alt="Custom Social" /></a></div>
+  <div class="contact-icons"><a href="mailto:you@example.com" title="Email"><i class="fa-solid fa-envelope"></i></a> <a href="https://inspirehep.net/authors/1010907" title="Inspirehep id"><i class="ai ai-inspire"></i></a> <a href="https://letterboxd.com/alberteinstein" title="Letterboxd id"><i class="fa-brands fa-letterboxd"></i></a> <a href="/jekyll-socials/feed.xml" title="Rss icon"><i class="fa-solid fa-square-rss"></i></a> <a href="https://scholar.google.com/citations?user=qc6CJjYAAAAJ" title="Scholar userid"><i class="ai ai-google-scholar"></i></a> <a href="https://www.alberteinstein.com/" title="Custom Social"><img src="https://www.alberteinstein.com/wp-content/uploads/2024/03/cropped-favicon-192x192.png" alt="Custom Social" /></a></div>
 </div>
 
 <h2 id="using-with-jekyll-polyglot">Using with Jekyll Polyglot</h2>
