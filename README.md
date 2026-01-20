@@ -12,6 +12,10 @@ This plugin supports three web font libraries for rendering social media icons:
 2. **[Academicons](https://jpswalsh.github.io/academicons/)** - Specialized icons for academic platforms and publications
 3. **[Scholar Icons](https://louisfacun.github.io/scholar-icons/)** - Additional icons for technical and coding platforms
 
+### Using Icons from Other Font Sources
+
+While this plugin comes with built-in support for the three font libraries above, you can use icons from any other font library you add to your site. Simply provide the icon class name in the `logo` field of a custom social or when overriding a built-in social's icon. The plugin will automatically detect whether the value is a file path (by checking for file extensions like .png, .jpg, .svg) or an icon class.
+
 ## Built-in Social Platforms
 
 The plugin includes built-in support for 53 social media and academic platforms:
@@ -33,6 +37,31 @@ github_username, gitlab_username, keybase_username, kaggle_id, lastfm_id, letter
 cv_pdf, email, rss_icon, wechat_username, whatsapp_number, work_url
 
 Additionally, the plugin supports **custom socials** with user-provided logos (images or icon classes) and URLs.
+
+## Customizing Social Icons
+
+### Overriding Icons for Built-in Socials
+
+You can override the default icons for any of the built-in social platforms. This is useful if you want to use a different icon from a different font library. For example, to use a different Letterboxd icon:
+
+```yml
+letterboxd_id:
+  value: your_letterboxd_username # the actual username or ID value
+  logo: fa-brands fa-letterboxd # override with custom icon class
+```
+
+This allows you to customize the appearance of any built-in social while keeping all the URL handling logic intact.
+
+### Custom Socials with Custom Logos
+
+For socials not in the built-in list, you can create custom entries with your own logos and URLs:
+
+```yml
+custom_social:
+  logo: custom-font-icon-class # Any icon class from fonts you've added
+  title: My Custom Social
+  url: https://example.com
+```
 
 ## Building and Releasing a New Version
 

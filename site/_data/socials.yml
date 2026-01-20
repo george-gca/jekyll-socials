@@ -26,7 +26,9 @@ inspirehep_id: 1010907 # Inspire HEP author ID
 # lastfm_id: # your lastfm id
 # lattes_id: # your ID on Lattes (Brazilian Lattes CV)
 # leetcode_id: # your LeetCode id
-# letterboxd_id: # your Letterboxd id
+letterboxd_id:
+  value: alberteinstein # your Letterboxd id
+  logo: fa-brands fa-letterboxd # override with custom icon class
 # linkedin_username: # your LinkedIn user name
 # mastodon_username: # your mastodon instance+username in the format instance.tld/@username
 # medium_username: # your Medium username

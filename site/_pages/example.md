@@ -59,7 +59,9 @@ inspirehep_id: 1010907 # Inspire HEP author ID
 # lastfm_id: # your lastfm id
 # lattes_id: # your ID on Lattes (Brazilian Lattes CV)
 # leetcode_id: # your LeetCode id
-# letterboxd_id: # your Letterboxd id
+letterboxd_id:
+  value: alberteinstein # your Letterboxd id
+  logo: fa-brands fa-letterboxd # override with custom icon class
 # linkedin_username: # your LinkedIn user name
 # mastodon_username: # your mastodon instance+username in the format instance.tld/@username
 # medium_username: # your Medium username
@@ -91,9 +93,33 @@ custom_social: # can be any name here other than the ones already defined above
   # or an Academicons class like "ai ai-acm"
   # or a FontAwesome class like "fa-brands fa-square-letterboxd"
   # or a Scholar Icons class like "si si-leetcode"
+  # or any other icon class from fonts you've added to your site
   logo: https://www.alberteinstein.com/wp-content/uploads/2024/03/cropped-favicon-192x192.png
   title: Custom Social
   url: https://www.alberteinstein.com/
+```
+
+### Overriding Icons for Built-in Socials
+
+You can override the default icons for any of the built-in social platforms. This is useful if you want to use a different icon from a different font library. For example, to use a different Letterboxd icon:
+
+```yml
+letterboxd_id:
+  value: your_letterboxd_username # the actual username or ID value
+  logo: fa-brands fa-letterboxd # override with custom icon class
+```
+
+This allows you to customize the appearance of any built-in social while keeping all the URL handling logic intact.
+
+### Using Icons from Other Font Sources
+
+While this plugin comes with built-in support for Academicons, Font Awesome, and Scholar Icons, you can use icons from any other font library you add to your site. Simply provide the icon class name in the `logo` field of a custom social or when overriding a built-in social's icon. The plugin will automatically detect whether the value is a file path (by checking for file extensions like .png, .jpg, .svg) or an icon class.
+
+```yml
+custom_social:
+  logo: custom-font-icon-class # Any icon class from fonts you've added
+  title: My Custom Social
+  url: https://example.com
 ```
 
 Next, add the following to your layout file:
