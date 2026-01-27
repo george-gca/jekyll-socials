@@ -6,7 +6,6 @@ module Jekyll
     def relative_url(path, context)
       return path if path.include?('://')
       baseurl = context.registers[:site].baseurl.to_s
-      baseurl = '' if baseurl.empty?
       "#{baseurl}#{path}"
     end
 
