@@ -2,6 +2,14 @@
 
 module Jekyll
   class SocialLinksTag < Liquid::Tag
+    # Helper method to construct relative URL with baseurl
+    def relative_url(path, context)
+      return path if path.include?('://')
+      baseurl = context.registers[:site].baseurl.to_s
+      baseurl = '' if baseurl.empty?
+      "#{baseurl}#{path}"
+    end
+
     # https://jpswalsh.github.io/academicons/
     ACADEMICONS = {
       'academia_edu' => "<i class='ai ai-academia'></i>",
@@ -166,13 +174,13 @@ module Jekyll
                 if logo_value.include?('://')
                   img_code = "<svg><image xlink:href='#{logo_value}' /></svg>"
                 else
-                  img_code = "<svg><image xlink:href='#{logo_value | relative_url}' /></svg>"
+                  img_code = "<svg><image xlink:href='#{relative_url(logo_value, context)}' /></svg>"
                 end
               else
                 if logo_value.include?('://')
                   img_code = "<img src='#{logo_value}' alt='#{social[0].gsub('_', ' ').capitalize}'>"
                 else
-                  img_code = "<img src='#{logo_value | relative_url}' alt='#{social[0].gsub('_', ' ').capitalize}'>"
+                  img_code = "<img src='#{relative_url(logo_value, context)}' alt='#{social[0].gsub('_', ' ').capitalize}'>"
                 end
               end
               "<a href='#{url}' title='#{social[0].gsub('_', ' ').capitalize}'>#{img_code}</a>"
@@ -216,13 +224,13 @@ module Jekyll
               if logo_value.include?('://')
                 img_code = "<svg><image xlink:href='#{logo_value}' /></svg>"
               else
-                img_code = "<svg><image xlink:href='#{logo_value | relative_url}' /></svg>"
+                img_code = "<svg><image xlink:href='#{relative_url(logo_value, context)}' /></svg>"
               end
             else
               if logo_value.include?('://')
                 img_code = "<img src='#{logo_value}' alt='#{social[1]['title']}'>"
               else
-                img_code = "<img src='#{logo_value | relative_url}' alt='#{social[1]['title']}'>"
+                img_code = "<img src='#{relative_url(logo_value, context)}' alt='#{social[1]['title']}'>"
               end
             end
             "<a href='#{social[1]['url']}' title='#{social[1]['title']}'>#{img_code}</a>"
