@@ -78,6 +78,7 @@ scholar_userid: qc6CJjYAAAAJ # your Google Scholar ID
 # spotify_id: # your spotify id
 # stackoverflow_id: # your stackoverflow id
 # strava_userid: # your strava user id
+# substack_username: # your Substack username (username.substack.com)
 # telegram_username: # your Telegram user name
 # unsplash_id: # your unsplash id
 # wechat_username: # your WeChat user name
