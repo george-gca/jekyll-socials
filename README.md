@@ -18,7 +18,7 @@ While this plugin comes with built-in support for the three font libraries above
 
 ## Built-in Social Platforms
 
-The plugin includes built-in support for 53 social media and academic platforms:
+The plugin includes built-in support for 54 social media and academic platforms:
 
 ### Academic & Research Platforms
 
@@ -26,7 +26,7 @@ academia_edu, acm_id, arxiv_id, dblp_url, hal_id, ieee_id, inspirehep_id, lattes
 
 ### Social Media Platforms
 
-blogger_url, bluesky_url, discord_id, facebook_id, flickr_id, instagram_id, mastodon_username, medium_username, pinterest_id, quora_username, reddit_username, spotify_id, telegram_username, tiktok_username, tumblr_username, twitch_username, x_username, youtube_id
+blogger_url, bluesky_url, discord_id, facebook_id, flickr_id, goodreads_id, instagram_id, mastodon_username, medium_username, pinterest_id, quora_username, reddit_username, spotify_id, telegram_username, tiktok_username, tumblr_username, twitch_username, x_username, youtube_id
 
 ### Professional & Networking
 
