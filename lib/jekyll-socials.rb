@@ -1,7 +1,62 @@
 # frozen_string_literal: true
+require "fileutils"
+require "net/http"
+require "uri"
+
+Jekyll::Hooks.register :site, :post_write do |site|
+  config = site.config["jekyll_socials"] || {}
+  simple_icons_cfg = config["simple_icons"] || {}
+  enabled = simple_icons_cfg.fetch("enabled", true)
+  next unless enabled
+
+  output_dir = (simple_icons_cfg["output_dir"] || "assets/img/social/simple-icons").sub(%r{\A/}, "")
+  cdn_url = (simple_icons_cfg["cdn_url"] || "https://cdn.simpleicons.org/")
+  cdn_url = cdn_url.end_with?("/") ? cdn_url : "#{cdn_url}/"
+
+  socials = site.data["socials"] || {}
+  slugs = []
+  socials.each do |key, value|
+    if value.is_a?(Hash) && value["simple_icon"]
+      slugs << value["simple_icon"].to_s.strip
+    end
+  end
+  slugs.uniq!
+  next if slugs.empty?
+
+  dest_base = File.join(site.dest, output_dir)
+  FileUtils.mkdir_p(dest_base) unless File.exist?(dest_base)
+
+  slugs.each do |slug|
+    normalized = slug.downcase.strip.gsub(/[^a-z0-9\-]/, "")
+    dest_path = File.join(dest_base, "#{normalized}.svg")
+    next if File.exist?(dest_path)
+    begin
+      uri = URI.parse("#{cdn_url}#{normalized}")
+      response = Net::HTTP.get_response(uri)
+      if response.is_a?(Net::HTTPSuccess) && !response.body.to_s.empty?
+        File.write(dest_path, response.body)
+        warn "[jekyll-socials] post_write: Downloaded Simple Icon SVG: #{dest_path}"
+      else
+        warn "[jekyll-socials] post_write: Failed to fetch SVG for Simple Icon: #{slug} (#{uri})"
+      end
+    rescue => e
+      warn "[jekyll-socials] post_write: Error fetching SVG for Simple Icon '#{slug}': #{e}"
+    end
+  end
+end
 
 module Jekyll
   class SocialLinksTag < Liquid::Tag
+        def render_simple_icon_link(simple_icon_slug, social, context)
+          return '' if simple_icon_slug.nil? || simple_icon_slug.to_s.strip.empty?
+          slug = simple_icon_slug.to_s.strip.downcase.gsub(/[^a-z0-9\-]/, "")
+          output_dir = "assets/img/social/simple-icons"
+          icon_url = relative_url("/#{output_dir}/#{slug}.svg", context)
+          icon_html = "<span class='simple-icon simple-icon--#{slug}' style='--social-icon-mask:url(#{icon_url});'></span>"
+          url = social[1]['url']
+          title = social[1]['title'] || slug.capitalize
+          "<a href='#{url}' title='#{title}'>#{icon_html}</a>"
+        end
     # Helper method to construct relative URL with baseurl
     def relative_url(path, context)
       return path if path.include?('://')
@@ -212,31 +267,37 @@ module Jekyll
             "<a href='#{url}' title='#{social[0].gsub('_', ' ').capitalize}'>#{icon}</a>"
           end
         else
-          # Check if logo is an icon class or an image
-          logo_value = social[1]['logo']
-          file_ext = logo_value.split('.').last.downcase
-          image_extensions = ['png', 'jpg', 'jpeg', 'gif', 'webp', 'svg']
-
-          if image_extensions.include?(file_ext)
-            # It's a file path or URL, render as image
-            if file_ext == 'svg'
-              if logo_value.include?('://')
-                img_code = "<svg><image xlink:href='#{logo_value}' /></svg>"
-              else
-                img_code = "<svg><image xlink:href='#{relative_url(logo_value, context)}' /></svg>"
-              end
-            else
-              if logo_value.include?('://')
-                img_code = "<img src='#{logo_value}' alt='#{social[1]['title']}'>"
-              else
-                img_code = "<img src='#{relative_url(logo_value, context)}' alt='#{social[1]['title']}'>"
-              end
-            end
-            "<a href='#{social[1]['url']}' title='#{social[1]['title']}'>#{img_code}</a>"
+          # Check for simple_icon field (Simple Icons SVG mask)
+          simple_icon_slug = social[1]['simple_icon'] if social[1].is_a?(Hash)
+          if simple_icon_slug && !simple_icon_slug.to_s.strip.empty?
+            render_simple_icon_link(simple_icon_slug, social, context)
           else
-            # It's an icon class string, render as icon (from any font source)
-            icon_html = "<i class='#{logo_value}'></i>"
-            "<a href='#{social[1]['url']}' title='#{social[1]['title']}'>#{icon_html}</a>"
+            # Check if logo is an icon class or an image
+            logo_value = social[1]['logo']
+            file_ext = logo_value.split('.').last.downcase
+            image_extensions = ['png', 'jpg', 'jpeg', 'gif', 'webp', 'svg']
+
+            if image_extensions.include?(file_ext)
+              # It's a file path or URL, render as image
+              if file_ext == 'svg'
+                if logo_value.include?('://')
+                  img_code = "<svg><image xlink:href='#{logo_value}' /></svg>"
+                else
+                  img_code = "<svg><image xlink:href='#{relative_url(logo_value, context)}' /></svg>"
+                end
+              else
+                if logo_value.include?('://')
+                  img_code = "<img src='#{logo_value}' alt='#{social[1]['title']}'>"
+                else
+                  img_code = "<img src='#{relative_url(logo_value, context)}' alt='#{social[1]['title']}'>"
+                end
+              end
+              "<a href='#{social[1]['url']}' title='#{social[1]['title']}'>#{img_code}</a>"
+            else
+              # It's an icon class string, render as icon (from any font source)
+              icon_html = "<i class='#{logo_value}'></i>"
+              "<a href='#{social[1]['url']}' title='#{social[1]['title']}'>#{icon_html}</a>"
+            end
           end
         end
       end.join(" ")

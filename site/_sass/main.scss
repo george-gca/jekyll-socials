@@ -46,6 +46,20 @@ code {
         height: 3.2rem;
       }
 
+
+      .simple-icon {
+        display: inline-block;
+        width: 3.2rem;
+        height: 3.2rem;
+        background-color: currentColor;
+        -webkit-mask: var(--social-icon-mask) no-repeat center / contain;
+        mask: var(--social-icon-mask) no-repeat center / contain;
+        color: #{$text-color};
+        &:hover {
+          color: green;
+        }
+      }
+
       svg {
         width: 3.5rem;
         height: 4rem;

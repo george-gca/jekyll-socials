@@ -55,6 +55,14 @@ scholar_userid: qc6CJjYAAAAJ # your Google Scholar ID
 # x_username: # your X handle
 # youtube_id: # your youtube channel id (youtube.com/@<youtube_id>)
 # zotero_username: # your zotero username
+codeberg:
+  simple_icon: codeberg
+  title: Codeberg
+  url: https://codeberg.org/
+ruby:
+  simple_icon: ruby
+  title: Ruby
+  url: https://www.ruby-lang.org/en/
 custom_social: # can be any name here other than the ones already defined above
   # logo can be a link to an image (png, jpg, svg)
   # or an Academicons class like "ai ai-acm"

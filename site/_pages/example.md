@@ -10,6 +10,7 @@ This is a Jekyll plugin that adds social links to your site. It fetches social i
 - [Academicons](https://jpswalsh.github.io/academicons/)
 - [Font Awesome](https://fontawesome.com/)
 - [Scholar Icons](https://github.com/louisfacun/scholar-icons)
+- [Simple Icons (SVG)](https://github.com/simple-icons/simple-icons)
 
 ## Installation
 
@@ -88,6 +89,10 @@ scholar_userid: qc6CJjYAAAAJ # your Google Scholar ID
 # x_username: # your X handle
 # youtube_id: # your youtube channel id (youtube.com/@<youtube_id>)
 # zotero_username: # your zotero username
+codeberg:
+  simple_icon: codeberg
+  title: Codeberg
+  url: https://codeberg.org/
 custom_social: # can be any name here other than the ones already defined above
   # logo can be a link to an image (png, jpg, svg)
   # or an Academicons class like "ai ai-acm"
@@ -122,6 +127,29 @@ custom_social:
   url: https://example.com
 ```
 
+### Simple Icons (SVG)
+
+You can use any [Simple Icons](https://simpleicons.org/) slug and the plugin will fetch the SVG from the Simple Icons CDN, saving it into your generated site (default: `assets/img/social/simple-icons/`).
+
+```yml
+codeberg:
+  simple_icon: codeberg
+  title: Codeberg
+  url: https://codeberg.org/your_handle
+```
+
+Theme with CSS by changing link color:
+
+```css
+.contact-icons a {
+  color: #ddd;
+}
+
+.contact-icons a:hover {
+  color: green;
+}
+```
+
 Next, add the following to your layout file:
 
 {% raw %}
@@ -147,6 +175,19 @@ Now, let's stylize the social icons. To do this, add this to your CSS file:
       img {
         width: 3.2rem;
         height: 3.2rem;
+      }
+
+      .simple-icon {
+        display: inline-block;
+        width: 3.2rem;
+        height: 3.2rem;
+        background-color: #ddd;
+        -webkit-mask: var(--social-icon-mask) no-repeat center / contain;
+        mask: var(--social-icon-mask) no-repeat center / contain;
+        color: #{$text-color};
+        &:hover {
+          color: green;
+        }
       }
 
       svg {

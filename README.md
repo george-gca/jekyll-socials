@@ -12,6 +12,8 @@ This plugin supports three web font libraries for rendering social media icons:
 2. **[Academicons](https://jpswalsh.github.io/academicons/)** - Specialized icons for academic platforms and publications
 3. **[Scholar Icons](https://louisfacun.github.io/scholar-icons/)** - Additional icons for technical and coding platforms
 
+It also supports **[Simple Icons](https://github.com/simple-icons/simple-icons/)** as SVGs. The plugin fetches the SVGs from the Simple Icons CDN at build time, saves them into your generated site, and renders them using a mask so they are fully themeable via CSS.
+
 ### Using Icons from Other Font Sources
 
 While this plugin comes with built-in support for the three font libraries above, you can use icons from any other font library you add to your site. Simply provide the icon class name in the `logo` field of a custom social or when overriding a built-in social's icon. The plugin will automatically detect whether the value is a file path (by checking for file extensions like .png, .jpg, .svg) or an icon class.
@@ -61,6 +63,46 @@ custom_social:
   logo: custom-font-icon-class # Any icon class from fonts you've added
   title: My Custom Social
   url: https://example.com
+```
+
+## Simple Icons (SVG)
+
+You can use any Simple Icons slug and the plugin will download the SVG into your generated site (default: `assets/img/social/simple-icons/`).
+Use https://simpleicons.org/ to find the slug for the icon you want to use.
+
+### Config
+
+```yml
+jekyll_socials:
+  simple_icons:
+    enabled: true
+    output_dir: assets/img/social/simple-icons
+    cdn_url: https://cdn.simpleicons.org/
+```
+
+### Usage
+
+For a custom social:
+
+```yml
+codeberg:
+  simple_icon: codeberg
+  title: Codeberg
+  url: https://codeberg.org/your_handle
+```
+
+### Themeable CSS
+
+The Simple Icons output uses `currentColor`, so you can theme them by setting color on the link:
+
+```css
+.contact-icons a {
+  color: var(--global-text-color);
+}
+
+.contact-icons a:hover {
+  color: var(--global-theme-color);
+}
 ```
 
 ## Building and Releasing a New Version
