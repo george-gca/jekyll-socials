@@ -27,6 +27,7 @@ module Jekyll
       'scholar_userid' => "<i class='ai ai-google-scholar'></i>",
       'scopus_id' => "<i class='ai ai-scopus'></i>",
       'semanticscholar_id' => "<i class='ai ai-semantic-scholar'></i>",
+      'zotero_username' => "<i class='ai ai-zotero'></i>",
     }.freeze
 
     # https://fontawesome.com/search
@@ -62,7 +63,6 @@ module Jekyll
       'work_url' => "<i class='fa-solid fa-briefcase'></i>",
       'x_username' => "<i class='fa-brands fa-x-twitter'></i>",
       'youtube_id' => "<i class='fa-brands fa-youtube'></i>",
-      'zotero_username' => "<i class='fa-brands fa-zotero'></i>"
     }.freeze
 
     # https://louisfacun.github.io/scholar-icons/
