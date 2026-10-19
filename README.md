@@ -18,7 +18,7 @@ While this plugin comes with built-in support for the three font libraries above
 
 ## Built-in Social Platforms
 
-The plugin includes built-in support for 53 social media and academic platforms:
+The plugin includes built-in support for 54 social media and academic platforms:
 
 ### Academic & Research Platforms
 
@@ -29,6 +29,7 @@ The plugin includes built-in support for 53 social media and academic platforms:
 - hal_id
 - ieee_id
 - inspirehep_id
+- lacuna_id
 - lattes_id
 - orcid_id
 - osf_id
